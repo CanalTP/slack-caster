@@ -21,6 +21,6 @@ with urllib.request.urlopen(full_url) as response:
                 channel_message['attachments']) > 0 and channel_message['attachments'][0]['service_name'] == 'YouTube':
             url_to_read = channel_message['attachments'][0]['from_url']
             print(url_to_read)
-            call(['vlc', '-f', url_to_read])
+            call([config['video-player'], '-f', url_to_read])
             exit()
 print('end')
