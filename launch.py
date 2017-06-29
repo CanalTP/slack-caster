@@ -19,7 +19,8 @@ with urllib.request.urlopen(full_url) as response:
     for channel_message in channel_messages['messages']:
         if channel_message['type'] == 'message' and 'attachments' in channel_message and len(
                 channel_message['attachments']) > 0 and channel_message['attachments'][0]['service_name'] == 'YouTube':
-            url_to_read = channel_message['text'][1:-1].replace('\\', '')
+            url_to_read = channel_message['attachments'][0]['from_url']
             print(url_to_read)
             call(['vlc', '-f', url_to_read])
+            exit()
 print('end')
