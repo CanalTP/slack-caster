@@ -2,6 +2,12 @@ import subprocess, signal
 import time
 import os
 
+
+
+os.system("taskkill /im vlc.exe")
+
+
+"""
 while True:
 	p = subprocess.Popen(['ps', '-A'], stdout=subprocess.PIPE)
 	out, err = p.communicate()
@@ -13,3 +19,4 @@ while True:
 			time.sleep(6)
 			pid = int(line.split(None, 1)[0])
 			os.kill(pid, signal.SIGKILL)
+"""
