@@ -31,13 +31,11 @@ while True:
                 if channel_message['type'] == 'message' and channel_message['text'] == 'stop' and channel_message['ts'] > getLastMessageTs():
                     print(config['platform'])
                     if config['platform'] == 'linux':
-                        p = subprocess.Popen(['ps', '-A'], stdout=subprocess.PIPE)
+                        p = subprocess.Popen(['ps', '-A'], stdout=subprocess.PIPE, universal_newlines=True)
                         out, err = p.communicate()
-                        print(out)
-                        exit()
                         for line in out.splitlines():
-                            print(line)
                             if 'vlc' in line:
+                                print(line)
                                 print('process vlc found ! waiting 3 seconds before kill !!!')
                                 time.sleep(3)
                                 pid = int(line.split(None, 1)[0])
