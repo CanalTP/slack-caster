@@ -43,8 +43,8 @@ while True:
                     # call(["vlc.exe", "-f", "https://www.youtube.com/watch?v=s5-nUCSXKac"])
                     if channel_message['ts'] > getLastMessageTs():
                         call([executable, '--play-and-exit', '-f', url_to_read])
-                        setLastMessageTs(channel_message['ts'])
-                        last_message_ts = channel_message['ts']
+                setLastMessageTs(channel_message['ts'])
+                last_message_ts = channel_message['ts']
         print('waiting 5s')
     except urllib.error.URLError:
         pass
