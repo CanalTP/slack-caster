@@ -1,6 +1,7 @@
 import urllib.request, urllib.parse
 import json
-from config import config
+from message import getLastMessageTs, setLastMessageTs
+from config import config 
 from subprocess import call
 
 slack_endpoint = 'https://slack.com/api/'
@@ -19,7 +20,11 @@ with urllib.request.urlopen(full_url) as response:
     for channel_message in channel_messages['messages']:
         if channel_message['type'] == 'message' and 'attachments' in channel_message and len(
                 channel_message['attachments']) > 0 and channel_message['attachments'][0]['service_name'] == 'YouTube':
-            url_to_read = channel_message['text'][1:-1].replace('\\', '')
-            print(url_to_read)
-            call(['vlc', '-f', url_to_read])
+            #url_to_read = channel_message['text'][1:-1].replace('\\', '')
+            print(channel_message['attachments'][0]['from_url'])
+            print(channel_message['ts']) 
+            if channel_message['ts'] > getLastMessageTs():
+            	call(['vlc', '-f', channel_message['attachments'][0]['from_url']])
+            	setLastMessageTs(channel_message['ts']);
+
 print('end')
