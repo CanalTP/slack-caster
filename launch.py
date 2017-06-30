@@ -24,6 +24,6 @@ with urllib.request.urlopen(full_url) as response:
             print(channel_message['ts']) 
             url_to_read = channel_message['attachments'][0]['from_url']
             if channel_message['ts'] > getLastMessageTs():
-            	call(['vlc', '-f', url_to_read])
+            	call(['vlc', '-f', '--play-and-exit', url_to_read])
             	setLastMessageTs(channel_message['ts']);
 print('end')
