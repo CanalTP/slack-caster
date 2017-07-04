@@ -23,7 +23,7 @@ params = {
         "count": 5,
         "channel": config['channel-id-to-pull']
     }
-# https://slack.com/api/channels.history?token=xoxp-16812062839-41309578433-204906609120-73921600c18cbcaa82217e35004a59ff&channel=C60NEG4QG&pretty=1
+# https://slack.com/api/channels.history?token=[token]&channel=C60NEG4QG&pretty=1
 while True:
     params["oldest"] = last_message_ts
     params_encoded = urllib.parse.urlencode(params)
