@@ -12,5 +12,5 @@ class YoutubeMatcher:
                 channel_message['text']):
             url_to_read = channel_message['text']
             for match in ['<', '>', '\\']:
-                url_to_read = channel_message['text'].replace(match, '')
+                url_to_read = url_to_read.replace(match, '')
             return url_to_read
